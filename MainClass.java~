@@ -1,0 +1,33 @@
+import java.awt.BorderLayout;
+import java.util.Hashtable;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+
+public class MainClass {
+  public static void main(String args[]) throws Exception {
+    String title = (args.length == 0 ? "Sample Slider" : args[0]);
+    JFrame frame = new JFrame(title);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    JSlider js4 = new JSlider(JSlider.VERTICAL);
+    Hashtable<Integer, JLabel> table = new Hashtable<Integer, JLabel>();
+    table.put(0, new JLabel("O"));
+    table.put(10, new JLabel("Ten"));
+    table.put(25, new JLabel("Twenty-Five"));
+    table.put(34, new JLabel("Thirty-Four"));
+    table.put(52, new JLabel("Fifty-Two"));
+    table.put(70, new JLabel("Seventy"));
+    table.put(82, new JLabel("Eighty-Two"));
+    table.put(100, new JLabel("100"));
+    js4.setLabelTable(table);
+    js4.setPaintLabels(true);
+    js4.setSnapToTicks(true);
+    frame.add(js4, BorderLayout.EAST);
+    frame.setSize(300, 200);
+    frame.setVisible(true);
+
+  }
+
+}
+

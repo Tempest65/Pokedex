@@ -1,0 +1,111 @@
+import java.awt.event.*;
+import javax.swing.*;  //import the Swing library
+import javax.swing.Timer;
+import javax.swing.border.Border;
+import java.awt.*;    //import the Graphics library
+import java.applet.*;
+import java.net.*;
+import java.io.*;
+
+public class Help extends JFrame implements ActionListener {
+   Border blackline, raisedetched, loweredetched,raisedbevel, loweredbevel, empty;
+  JLabel background;
+  JButton btnPokedex,btnBattleScene,btnPokemart,btnExit;
+  AudioClip song;
+  public Help(){
+    setSize(500, 600);
+    setResizable(false);
+    setTitle("Help");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    getContentPane().setBackground(Color.WHITE);
+    setLayout(null);
+    background = new JLabel (new ImageIcon("startMenu.gif"));
+    btnPokedex = new JButton("New Game");
+    btnBattleScene = new JButton("Load Game");
+    btnPokemart = new JButton("Help");
+    btnExit = new JButton("Exit");
+    btnPokedex.setForeground(Color.WHITE);
+    btnBattleScene.setForeground(Color.WHITE);
+    btnPokemart.setForeground(Color.WHITE);
+btnExit.setForeground(Color.WHITE);
+btnBattleScene.setContentAreaFilled(false);
+
+    btnBattleScene.setFocusPainted(false);
+    btnPokedex.setContentAreaFilled(false);
+    btnPokedex.setFocusPainted(false);
+btnPokemart.setContentAreaFilled(false);
+ btnPokemart.setFocusPainted(false);
+btnExit.setFocusPainted(false);
+btnExit.setContentAreaFilled(false);
+
+    background.setBounds(0,0,500,600);
+    btnPokedex.setBounds(200,370,100,25);
+    btnBattleScene.setBounds(200,400,100,25);
+    btnPokemart.setBounds(200,430,100,25);
+    btnExit.setBounds(200,460,100,25);
+    
+    
+    //declares border
+    Border compound;
+    //creates components of compound border
+    Border line = BorderFactory.createLineBorder(Color.BLACK);
+    raisedbevel = BorderFactory.createRaisedBevelBorder();
+    loweredbevel = BorderFactory.createLoweredBevelBorder();
+//This creates a neat frame
+    compound = BorderFactory.createCompoundBorder(raisedbevel, loweredbevel);
+    
+//Adds an outline to the frame.
+    compound = BorderFactory.createCompoundBorder(line, compound);
+    
+    add(btnPokemart);
+   add(btnPokedex);
+   add(btnBattleScene);
+   add(btnExit);
+    add(background);
+    
+    //sets borders to components
+    btnPokemart.setBorder(compound);
+    btnPokedex.setBorder(compound);
+    btnBattleScene.setBorder(compound);
+    btnExit.setBorder(compound);
+    
+    
+    
+    btnPokemart.addActionListener(this);
+    btnPokedex.addActionListener(this);
+    btnBattleScene.addActionListener(this);
+    btnExit.addActionListener(this);  
+    URL path = getClass ().getResource ("original.wav"); //open the file
+    song = Applet.newAudioClip (path); //create audio clip
+    song.loop();
+    
+    setVisible(true);
+  }
+  
+  public void actionPerformed(ActionEvent evt) { 
+   if (evt.getSource () == btnPokedex) {
+     try{
+       song.stop();
+   new BattleScene();
+   dispose();
+   
+   } catch (Exception error){
+    }
+}
+//    else if (evt.getSource () == btnBattleScene) {
+//   new Intro();
+//}
+    else if (evt.getSource () == btnPokemart) {
+  
+}
+    else if (evt.getSource () == btnExit) {
+  System.exit(0);
+}
+  }
+  public static void main(String[] args) { 
+    new Start();
+  }
+  
+  /* ADD YOUR CODE HERE */
+  
+}
